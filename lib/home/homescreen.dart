@@ -38,13 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Padding(
           padding: EdgeInsets.all(2),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
 
             children: [
 
+              SizedBox(height: 16,),
 
-              Text('List of Albums', style: TextStyle(fontSize: 16),),
+              const Text('List of Albums', style: TextStyle(fontSize: 16),),
 
               FutureBuilder<List<Album>>(
                 future: mainData,
@@ -74,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     List<Album> list = snapData;
 
 
-                    return buildList(list.take(30).toList());
+                    return buildList(list.take(50).toList());
 
 
                   }
@@ -111,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Container(
           margin: EdgeInsets.all(16),
           padding: EdgeInsets.all(8),
-          width: 180,
+          width: MediaQuery.of(context).size.width,
           height: 180,
           decoration: BoxDecoration(
             image: DecorationImage(image: NetworkImage(albums[index].thumbnailUrl!), fit: BoxFit.cover),
