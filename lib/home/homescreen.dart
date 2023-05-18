@@ -15,15 +15,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  late Future<Album> albumFuture;
 
   Future<List<Album>>? mainData;
 
   @override
   void initState() {
     super.initState();
-
-   /* albumFuture = fetchAlbum();*/
 
     mainData = Provider.of<MainProvider>(context, listen: false).getItems();
 
@@ -34,14 +31,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Album List'),
+      ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(24),
+          padding: EdgeInsets.all(2),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
 
             children: [
+
+
+              Text('List of Albums', style: TextStyle(fontSize: 16),),
 
               FutureBuilder<List<Album>>(
                 future: mainData,
@@ -55,7 +58,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     );
 
-                    // if we got our data
                   }
                   else if (snapshot.connectionState == ConnectionState.waiting) {
 
@@ -107,7 +109,6 @@ class _HomeScreenState extends State<HomeScreen> {
   buildList(List<Album> albums) {
     return Column( children: List.generate(albums.length, (index) =>
         Container(
-          alignment: Alignment.center,
           margin: EdgeInsets.all(16),
           padding: EdgeInsets.all(8),
           width: 180,
