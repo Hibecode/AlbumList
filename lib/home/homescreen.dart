@@ -38,6 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Padding(
           padding: EdgeInsets.all(24),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
 
             children: [
 
@@ -70,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     List<Album> list = snapData;
 
 
-                    return buildList(list);
+                    return buildList(list.take(5).toList());
 
 
                   }
@@ -105,18 +107,19 @@ class _HomeScreenState extends State<HomeScreen> {
   buildList(List<Album> albums) {
     return Column( children: List.generate(albums.length, (index) =>
         Container(
-          padding:EdgeInsets.all(10),
-          width: (MediaQuery.of(context).size.width - 60) / 2,
-          height: 160,
+          alignment: Alignment.center,
+          margin: EdgeInsets.all(20),
+          width: 80,
+          height: 80,
           decoration: BoxDecoration(
             color: Colors.grey,
             borderRadius: BorderRadius.circular(3.9),
           ),
           child: Column(
             children: [
-              Image.network(albums[index].url!),
-              SizedBox(height: 8,),
-              Text(albums[index].title!, style: TextStyle(fontSize: 14),),
+              Image.network(albums[index].thumbnailUrl!, width: 40, height: 40,),
+              SizedBox(height: 20,),
+              Text(albums[index].title!, style: TextStyle(fontSize: 12),),
             ],
           ),
         )

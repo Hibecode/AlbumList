@@ -45,8 +45,8 @@ class MainProvider extends ChangeNotifier{
     http.StreamedResponse streamedResponse = await request.send();
     final response = await http.Response.fromStream(streamedResponse);
 
-    final Map<String, dynamic> responseData = json.decode(response.body);
-    print(responseData);
+    final List<dynamic> responseData = json.decode(response.body);
+    print("workk $responseData");
 
     if (response.statusCode == 200) {
 
